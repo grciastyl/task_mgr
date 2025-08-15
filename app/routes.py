@@ -38,3 +38,4 @@ def update_task(pk):
 def delete_task(pk):
     task.delete_by_id(pk)
     return "", 204
+    
