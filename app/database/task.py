@@ -31,8 +31,8 @@ def select_by_id(task_id):  #gets the task id parameter
 
 def insert(task_data):
     task_tuple = (
-        task_data.get("name"), task_data.get("summary"),  ## looks in the dictionary for specified key, then returns the value otherwise returns none
-        task-data.get("description")                      ## without .get, if it doesnt exist, it will crash the program
+        task_data.get("name"), task_data.get("summary"),  ## looks in the dictionary task_data for specified key, then returns the value otherwise returns none
+        task_data.get("description")                      ## without .get, if it doesnt exist, it will crash the program
     )
     statement = """
         INSERT INTO task (
@@ -70,3 +70,8 @@ def delete_by_id(task_id):
     conn = get_db()
     conn.execute("DELETE FROM task WHERE id=?", (task_id,)) #comma!!
     conn.commit()
+
+    def deactivate_task(task_id):
+        conn = get_db()
+        conn.execute("UPDATE task SET is_done=1 WHERE id=?", (task_id,))
+        conn.commit()

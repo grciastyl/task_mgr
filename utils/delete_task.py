@@ -7,14 +7,12 @@ import requests
 
 URL= "http://127.0.0.1:5000/tasks"
 
-def delete_task(name, summary, description):
+def delete_task(task_id):
     task_data = {
-        "name": name,
-        "summary": summary,
-        "description": description
+        "id": task_id
     }
-    response = requests.delete(URL)
+    response = requests.delete(URL, json=task_data)
     if response.status_code == 204:
-        print("Task successfully created!")
+        print("Task successfully deleted!")
     else:
-        print("Task creation failed.")
+        print("Task deletion failed.")

@@ -39,3 +39,7 @@ def delete_task(pk):
     task.delete_by_id(pk)
     return "", 204
     
+@app.patch("/tasks/<int:pk>")
+def deactivate_task(pk):
+    task.deactivate_task(pk)
+    return "", 204
